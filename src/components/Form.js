@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
 const Field = styled.div`
@@ -43,11 +43,38 @@ const Button = styled.button`
 
 
 const Form = () => {
+
+    const [selection, setSelection] = useState({
+        brand: '',
+        year: '',
+        plan: ''
+    })
+
+    //Extract values from state
+
+    const {brand, year, plan} = selection;
+
+
+    //Read the data from the form and saving those into the state
+
+    const getInfoFromForm = e => {
+        setSelection({
+            ...selection,
+            [e.target.name]: e.target.value
+        })
+    }
+
+
+
     return ( 
         <form>
             <Field>
                 <Label>Brand</Label>
-                <Select>
+                <Select
+                    name='brand'
+                    value={brand}
+                    onChange={getInfoFromForm}
+                >
                     <option value="">-- Select --</option>
                     <option value="american">American</option>
                     <option value="european">European</option>
@@ -57,7 +84,11 @@ const Form = () => {
 
             <Field>
                 <Label>Year</Label>
-                <Select>
+                <Select         
+                    name='year'
+                    value={year}
+                    onChange={getInfoFromForm}
+                >
                     <option value="">-- Select --</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
@@ -77,12 +108,16 @@ const Form = () => {
                     type='radio'
                     name='plan'
                     value='basic'
+                    checked={plan ==='basic'}
+                    onChange={getInfoFromForm}
                 /> Basic
 
                 <RadioInput
                     type='radio'
                     name='plan'
-                    value='Complete'
+                    value='complete'
+                    checked={plan==='complete'}
+                    onChange={getInfoFromForm}
                 /> Complete
             </Field>
             <Button type="button">Get Quote</Button>
