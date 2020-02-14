@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
+import {getYearDifference } from '../helper';
 
 const Field = styled.div`
     display: flex;
@@ -41,6 +42,15 @@ const Button = styled.button`
     }
 `;
 
+const Error = styled.div`
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+`;
+
 
 const Form = () => {
 
@@ -49,6 +59,8 @@ const Form = () => {
         year: '',
         plan: ''
     })
+
+    const [error, setError] = useState(false);
 
     //Extract values from state
 
@@ -64,10 +76,49 @@ const Form = () => {
         })
     }
 
+    //When the user clicks the submit button
+
+    const quoteInsurance = e => {
+        e.preventDefault();
+
+        if (brand.trim() === '' || year.trim() ==='' || plan.trim() ==='') {
+            setError(true);
+            return
+        }
+
+        setError(false);
+
+        // Obtain the difference of years
+
+        const yearDifference = getYearDifference(year); 
+        
+        //base price will be 2000mxn
+        let basePrice = 2000;
+
+        //For each year we will extract 3%
+
+        basePrice -= ((yearDifference * 3) * basePrice) / 100;
+        console.log(basePrice);
+
+        //American 15%
+        //asian 5%
+        //european 30%
+
+        //Basic increases 20%
+        //Complete increases 50%
+
+        //total
+    }
 
 
     return ( 
-        <form>
+        <form
+            onSubmit={quoteInsurance}
+        >
+
+            {
+                error ? <Error>All the fields are required</Error> : null
+            }
             <Field>
                 <Label>Brand</Label>
                 <Select
@@ -120,7 +171,7 @@ const Form = () => {
                     onChange={getInfoFromForm}
                 /> Complete
             </Field>
-            <Button type="button">Get Quote</Button>
+            <Button type="submit">Get Quote</Button>
         </form>
     );
 }
