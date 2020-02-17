@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
-import {getYearDifference, getCostPerBrand } from '../helper';
+import {getYearDifference, getCostPerBrand, getPlan } from '../helper';
 
 const Field = styled.div`
     display: flex;
@@ -104,10 +104,11 @@ const Form = () => {
         //european 30%
 
         basePrice = getCostPerBrand(brand) * basePrice;
-        console.log(basePrice)
+
         //Basic increases 20%
         //Complete increases 50%
-
+        const increasePlan = getPlan(plan);
+        basePrice = parseFloat( increasePlan * basePrice).toFixed(2);
         //total
     }
 
