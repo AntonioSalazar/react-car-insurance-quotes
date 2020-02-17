@@ -4,6 +4,8 @@ import Form from './components/Form';
 import Totals from './components/Totals';
 import styled from '@emotion/styled';
 import Result from './components/Results';
+import Spinner from './components/Spinner';
+
 
 const Container = styled.div`
   max-width: 60rem;
@@ -26,6 +28,8 @@ function App() {
     }
   });
 
+  const [ loading, setLoading ] = useState(false);
+
   const { selection, quote } = totals;
 
   return (
@@ -36,14 +40,23 @@ function App() {
       <FormContainer>
         <Form 
           setTotals={setTotals}
+          setLoading={setLoading}
         />
+
+        { loading ? <Spinner /> : null }
+
         <Totals
           selection={selection}
         />
 
-        <Result
-          quote={quote}
-        />
+        { !loading ?
+          <Result
+            quote={quote}
+          />      
+          :  null
+      }
+
+
       </FormContainer>
     </Container>
   );

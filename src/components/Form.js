@@ -52,7 +52,7 @@ const Error = styled.div`
 `;
 
 
-const Form = ({ setTotals }) => {
+const Form = ({ setTotals, setLoading }) => {
 
     const [selection, setSelection] = useState({
         brand: '',
@@ -111,10 +111,17 @@ const Form = ({ setTotals }) => {
         basePrice = parseFloat( increasePlan * basePrice).toFixed(2);
         //total
 
-        setTotals({
-            quote: basePrice,
-            selection
-        })
+        setLoading(true);
+
+        setTimeout(() => {
+
+            setLoading(false);
+            setTotals({
+                quote: basePrice,
+                selection
+            })    
+        }, 3000);
+
     }
 
 
