@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
-import {getYearDifference } from '../helper';
+import {getYearDifference, getCostPerBrand } from '../helper';
 
 const Field = styled.div`
     display: flex;
@@ -98,12 +98,13 @@ const Form = () => {
         //For each year we will extract 3%
 
         basePrice -= ((yearDifference * 3) * basePrice) / 100;
-        console.log(basePrice);
 
         //American 15%
         //asian 5%
         //european 30%
 
+        basePrice = getCostPerBrand(brand) * basePrice;
+        console.log(basePrice)
         //Basic increases 20%
         //Complete increases 50%
 
