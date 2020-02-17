@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
+import Totals from './components/Totals';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -14,13 +15,30 @@ const FormContainer = styled.div`
 `;
 
 function App() {
+
+  const [ totals, setTotals ] = useState({
+    quote: 0,
+    selection: {
+      brand: '',
+      year: '',
+      plan: ''
+    }
+  });
+
+  const { selection } = totals;
+
   return (
     <Container>
       <Header
         title='Car insurance quotes'
       />
       <FormContainer>
-        <Form />
+        <Form 
+          setTotals={setTotals}
+        />
+        <Totals
+          selection={selection}
+        />
       </FormContainer>
     </Container>
   );
