@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Form from './components/Form';
 import Totals from './components/Totals';
 import styled from '@emotion/styled';
+import Result from './components/Results';
 
 const Container = styled.div`
   max-width: 60rem;
@@ -25,7 +26,7 @@ function App() {
     }
   });
 
-  const { selection } = totals;
+  const { selection, quote } = totals;
 
   return (
     <Container>
@@ -38,6 +39,10 @@ function App() {
         />
         <Totals
           selection={selection}
+        />
+
+        <Result
+          quote={quote}
         />
       </FormContainer>
     </Container>

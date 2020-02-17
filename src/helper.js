@@ -33,3 +33,9 @@ export function getCostPerBrand(brand) {
 export function getPlan (plan) {
     return( plan === 'basic') ? 1.20 : 1.50;
 }
+
+// Shows the first letter in uppercase
+
+export function firstLetterCapitalized( text ) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}

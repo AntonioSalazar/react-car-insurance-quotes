@@ -1,4 +1,14 @@
-import React, { Fragment} from 'react'
+import React from 'react';
+import styled from '@emotion/styled';
+import { firstLetterCapitalized } from "../helper";
+
+const TotalsContainer = styled.div`
+    padding: 1rem;
+    text-align: center;
+    background-color: #00838f;
+    color: #fff;
+    margin-top: 1rem;
+`;
 
 const Totals = ({ selection }) => {
 
@@ -6,16 +16,16 @@ const Totals = ({ selection }) => {
 
     if(brand === '' || year === '' || plan === "") return null;
     return(
-        <Fragment>
+        <TotalsContainer>
             <h2>
                 Quote Totals
             </h2>
             <ul>
-                <li>Brand: {brand}</li>
+                <li>Brand: {firstLetterCapitalized(brand)}</li>
                 <li>Year: {year}</li>
-                <li>Plan: {plan}</li>
+                <li>Plan: {firstLetterCapitalized(plan)}</li>
             </ul>
-        </Fragment>
+        </TotalsContainer>
     )
 }
 
