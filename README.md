@@ -7,4 +7,4 @@ Used styled components for this project.
 Deployed in netlify: https://gracious-yonath-94faf1.netlify.com/
 
 How it looks like:
-![](publi/img/home.png)
+![](public/projectImgs/home.png)
