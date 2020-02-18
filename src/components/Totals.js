@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { firstLetterCapitalized } from "../helper";
+import PropTypes from 'prop-types';
 
 const TotalsContainer = styled.div`
     padding: 1rem;
@@ -27,6 +28,10 @@ const Totals = ({ selection }) => {
             </ul>
         </TotalsContainer>
     )
+}
+
+Totals.propTypes = {
+    selection:  PropTypes.object.isRequired
 }
 
 export default Totals;

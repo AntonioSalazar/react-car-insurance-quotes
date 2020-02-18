@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import {getYearDifference, getCostPerBrand, getPlan } from '../helper';
 
 const Field = styled.div`
@@ -117,7 +118,7 @@ const Form = ({ setTotals, setLoading }) => {
 
             setLoading(false);
             setTotals({
-                quote: basePrice,
+                quote: Number(basePrice),
                 selection
             })    
         }, 3000);
@@ -188,6 +189,11 @@ const Form = ({ setTotals, setLoading }) => {
             <Button type="submit">Get Quote</Button>
         </form>
     );
+}
+
+Form.propTypes = {
+    setTotals:  PropTypes.func.isRequired,
+    setLoading: PropTypes.func.isRequired                    
 }
  
 export default Form;
