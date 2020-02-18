@@ -8,3 +8,10 @@ Deployed in netlify: https://gracious-yonath-94faf1.netlify.com/
 
 How it looks like:
 ![](public/projectImgs/home.png)
+
+
+After making the selection:
+![](public/projectImgs/screen1.png)
+
+If the user clicks on the submit button if they dont make any selection:
+![](public/projectImgs/error.png)
